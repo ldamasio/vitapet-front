@@ -4,6 +4,7 @@ COPY ./vitapet/package.json ./
 RUN cat ./package.json
 RUN npm install --legacy-peer-deps
 COPY ./vitapet/. .
+RUN ls -la
 RUN npm run build
 EXPOSE 3000
 

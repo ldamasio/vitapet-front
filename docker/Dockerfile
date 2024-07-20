@@ -11,3 +11,4 @@ EXPOSE 3000
 RUN npm install --global pm2
 USER node
 CMD [ "pm2-runtime", "npm", "--", "start" ]
+

@@ -1,8 +1,8 @@
 'use client'
 
-import React, { createContext, useState } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 
-export interface FormState {
+interface FormState {
   // Defina a estrutura de dados conforme os passos do formulário
   codigoPlano: string;
   dataAdmissao: string;
@@ -27,46 +27,51 @@ export interface FormState {
   outroTelefone: string;
 }
 
-const initialFormState: FormState = {
-  codigoPlano: '',
-  dataAdmissao: '',
-  tipoPet: '',
-  racaPet: '',
-  nomePet: '',
-  sexoPet: '',
-  dataNascimentoPet: '',
-  nomePrimeiroTutor: '',
-  cpfTutorPrincipal: '',
-  nomeSegundoTutor: '',
-  endereco: '',
-  numero: '',
-  complemento: '',
-  bairro: '',
-  cidade: '',
-  cep: '',
-  estado: '',
-  emailTutor: '',
-  telefonePrincipal: '',
-  telefoneSecundario: '',
-  outroTelefone: '',
-};
-
-interface FormContextType {
-  formData: FormState;
-  setFormData: React.Dispatch<React.SetStateAction<FormState>>;
+interface FormContextProps {
+  formState: FormState;
+  setFormState: React.Dispatch<React.SetStateAction<FormState>>;
 }
 
-export const FormContext = createContext<FormContextType>({
-  formData: initialFormState,
-  setFormData: () => {},
-});
+const FormContext = createContext<FormContextProps | undefined>(undefined);
 
-export const FormProvider: React.FC = ({ children }) => {
-  const [formData, setFormData] = useState<FormState>(initialFormState);
+export const FormProvider = ({ children }: { children: ReactNode }) => {
+  const [formState, setFormState] = useState<FormState>({
+    codigoPlano: '',
+    dataAdmissao: '',
+    tipoPet: '',
+    racaPet: '',
+    nomePet: '',
+    sexoPet: '',
+    dataNascimentoPet: '',
+    nomePrimeiroTutor: '',
+    cpfTutorPrincipal: '',
+    nomeSegundoTutor: '',
+    endereco: '',
+    numero: '',
+    complemento: '',
+    bairro: '',
+    cidade: '',
+    cep: '',
+    estado: '',
+    emailTutor: '',
+    telefonePrincipal: '',
+    telefoneSecundario: '',
+    outroTelefone: '',
+  });
 
   return (
-    <FormContext.Provider value={{ formData, setFormData }}>
+    <FormContext.Provider value={{ formState, setFormState }}>
       {children}
     </FormContext.Provider>
   );
 };
+
+export const useFormContext = () => {
+  const context = useContext(FormContext);
+  if (context === undefined) {
+    throw new Error('useFormContext must be used within a FormProvider');
+  }
+  return context;
+};
+
+export default useFormContext;

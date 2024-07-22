@@ -4,16 +4,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
-import { FormContext } from '@/context/FormContext';
+import { useFormContext } from '@/context/FormContext';
 
 const PassoDois: React.FC = () => {
-  const { formData, setFormData } = useContext(FormContext);
+  const { formState, setFormState } = useFormContext();
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
+    setFormState((prevState) => ({
+      ...prevState,
       [name]: value,
     }));
   };
@@ -23,7 +23,7 @@ const PassoDois: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    // const response = await axios.post('https://backend.vitapetsaude.com.br/api/register/', formData, {
+    // const response = await axios.post('https://backend.vitapetsaude.com.br/api/register/', formState, {
     //   headers: {
     //     'Content-Type': 'application/json',
     //   },
@@ -51,7 +51,7 @@ const PassoDois: React.FC = () => {
             <input
               type="text"
               name="endereco"
-              value={formData.endereco}
+              value={formState.endereco}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Endereço"
@@ -62,7 +62,7 @@ const PassoDois: React.FC = () => {
             <input
               type="text"
               name="numero"
-              value={formData.numero}
+              value={formState.numero}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Número"
@@ -73,7 +73,7 @@ const PassoDois: React.FC = () => {
             <input
               type="text"
               name="complemento"
-              value={formData.complemento}
+              value={formState.complemento}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Complemento"
@@ -84,7 +84,7 @@ const PassoDois: React.FC = () => {
             <input
               type="text"
               name="bairro"
-              value={formData.bairro}
+              value={formState.bairro}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Bairro"
@@ -95,7 +95,7 @@ const PassoDois: React.FC = () => {
             <input
               type="text"
               name="cidade"
-              value={formData.cidade}
+              value={formState.cidade}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Cidade"
@@ -106,7 +106,7 @@ const PassoDois: React.FC = () => {
             <input
               type="text"
               name="cep"
-              value={formData.cep}
+              value={formState.cep}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="CEP"
@@ -117,7 +117,7 @@ const PassoDois: React.FC = () => {
             <input
               type="text"
               name="estado"
-              value={formData.estado}
+              value={formState.estado}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Estado"
@@ -128,7 +128,7 @@ const PassoDois: React.FC = () => {
             <input
               type="email"
               name="emailTutor"
-              value={formData.emailTutor}
+              value={formState.emailTutor}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Endereço de email do TUTOR"
@@ -139,7 +139,7 @@ const PassoDois: React.FC = () => {
             <input
               type="text"
               name="telefonePrincipal"
-              value={formData.telefonePrincipal}
+              value={formState.telefonePrincipal}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Número do telefone principal"
@@ -150,7 +150,7 @@ const PassoDois: React.FC = () => {
             <input
               type="text"
               name="telefoneSecundario"
-              value={formData.telefoneSecundario}
+              value={formState.telefoneSecundario}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Número do telefone secundário"
@@ -161,7 +161,7 @@ const PassoDois: React.FC = () => {
             <input
               type="text"
               name="outroTelefone"
-              value={formData.outroTelefone}
+              value={formState.outroTelefone}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Outro telefone de contato"

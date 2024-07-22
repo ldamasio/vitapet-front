@@ -3,16 +3,16 @@
 import React, { useContext } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { FormContext } from '@/context/FormContext';
+import { useFormContext } from '@/context/FormContext';
 
 const PassoUm: React.FC = () => {
-  const { formData, setFormData } = useContext(FormContext);
+  const { formState, setFormState } = useFormContext();
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
+    setFormState((prevState) => ({
+      ...prevState,
       [name]: value,
     }));
   };
@@ -40,7 +40,7 @@ const PassoUm: React.FC = () => {
             <input
               type="text"
               name="codigoPlano"
-              value={formData.codigoPlano}
+              value={formState.codigoPlano}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Código do plano"
@@ -51,7 +51,7 @@ const PassoUm: React.FC = () => {
             <input
               type="date"
               name="dataAdmissao"
-              value={formData.dataAdmissao}
+              value={formState.dataAdmissao}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
@@ -60,7 +60,7 @@ const PassoUm: React.FC = () => {
             <label className="block text-sm font-medium text-gray-700">Tipo do PET</label>
             <select
               name="tipoPet"
-              value={formData.tipoPet}
+              value={formState.tipoPet}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             >
@@ -76,7 +76,7 @@ const PassoUm: React.FC = () => {
             <input
               type="text"
               name="racaPet"
-              value={formData.racaPet}
+              value={formState.racaPet}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Raça do PET"
@@ -87,7 +87,7 @@ const PassoUm: React.FC = () => {
             <input
               type="text"
               name="nomePet"
-              value={formData.nomePet}
+              value={formState.nomePet}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Nome do PET"
@@ -97,7 +97,7 @@ const PassoUm: React.FC = () => {
             <label className="block text-sm font-medium text-gray-700">Sexo do PET</label>
             <select
               name="sexoPet"
-              value={formData.sexoPet}
+              value={formState.sexoPet}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             >
@@ -111,7 +111,7 @@ const PassoUm: React.FC = () => {
             <input
               type="date"
               name="dataNascimentoPet"
-              value={formData.dataNascimentoPet}
+              value={formState.dataNascimentoPet}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
@@ -121,7 +121,7 @@ const PassoUm: React.FC = () => {
             <input
               type="text"
               name="nomePrimeiroTutor"
-              value={formData.nomePrimeiroTutor}
+              value={formState.nomePrimeiroTutor}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Nome do primeiro TUTOR"
@@ -132,7 +132,7 @@ const PassoUm: React.FC = () => {
             <input
               type="text"
               name="cpfTutorPrincipal"
-              value={formData.cpfTutorPrincipal}
+              value={formState.cpfTutorPrincipal}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Número do CPF do TUTOR principal"
@@ -143,7 +143,7 @@ const PassoUm: React.FC = () => {
             <input
               type="text"
               name="nomeSegundoTutor"
-              value={formData.nomeSegundoTutor}
+              value={formState.nomeSegundoTutor}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Nome do segundo TUTOR"
